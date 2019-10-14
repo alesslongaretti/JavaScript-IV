@@ -7,21 +7,19 @@ class Person {
     }
 
     speak() {
-        console.log(`Hello my name is ${this.name}, I am from ${this.location}`)
+        console.log (`Hello my name is ${this.name}, I am from ${this.location}`)
     }
 }
 
 
 
 
-
-
-
-class Instructor {
+class Instructor extends Person {
     constructor(insAttrs) {
-        this.name = insAttrs.name;
-        this.age = insAttrs.age;
-        this.location = insAttrs.location;
+        super(insAttrs);
+        // this.name = insAttrs.name;
+        // this.age = insAttrs.age;
+        // this.location = insAttrs.location;
         this.specialty = insAttrs.specialty;
         this.favLanguage = insAttrs.favLanguage;
         this.catchPhrase = insAttrs.catchPhrase;
@@ -36,17 +34,18 @@ class Instructor {
 
 }
 
-class Student {
+class Student extends Person {
     constructor(studentAttrs) {
-        this.name = studentAttrs.name;
-        this.age = studentAttrs.age;
-        this.location = studentAttrs.location;
+        super(studentAttrs);
+        // this.name = studentAttrs.name;
+        // this.age = studentAttrs.age;
+        // this.location = studentAttrs.location;
         this.previousBackground = studentAttrs.previousBackground;
         this.className = studentAttrs.className;
         this.favSubjects = studentAttrs.favSubjects;
     }
     listsSubjects() {
-        console.log(this.favSubjects)
+        this.favSubjects.map(item => console.log(item));
     }
     PRAssignment(subject) {
         console.log(`${this.name} has submitted a PR for ${subject}`)
@@ -55,3 +54,26 @@ class Student {
         console.log(`${this.name} has begun sprint challenge on ${subject}`)
     }
 }
+
+class ProjectManagers extends Instructor {
+    constructor(managersAttrs) {
+        super(managersAttrs);
+        this.gradClassName = managersAttrs.gradClassName;
+        this.favInstructor = managersAttrs.favInstructor;
+    }
+    standUp(channel) {
+        console.log (`${this.name} announces to ${channel}, @channel standy times!`)
+    }
+    debugsCode(student, subject) {
+        console.log (`${this.name} debugs ${student.name}'s code on ${subject}`)
+    }
+}
+
+const fred = new Instructor ({
+    name: 'Fred',
+    age: '25',
+    location: 'New York City',
+    favLanguage: 'JavaScript',
+    specialty: 'Front-end',
+    catchPhrase: 'Yo Yo Yo',
+});
